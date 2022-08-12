@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Make a QR Code using the Google Chart API</title>
+    <style>
+      .param { margin: 10px; }
+      textarea { margin: 10px; }
+      label { margin-right: 10px }
+    </style>
+    <script type="text/javascript">
+      function update_chs() {
+          document.querySelector("#cht").value =
+              (document.querySelector("#width").value + "x" + 
+               document.querySelector("#height").value);
+      }
+
+      addEventListener("DOMContentLoaded",
+                       (event) => {
+                           document.querySelector("#width").addEventListener("input", update_chs)
+                           document.querySelector("#height").addEventListener("input", update_chs)
+                       });
+    </script>
+  </head>
+  <body>
+    <h1>Make a QR Code</h1>
+
+    <p>
+      This page can be used to make a QR code whose image you can
+      paste elsewhere.
+    </p>
+
+    <p>
+      It uses Google's chart API.
+    </p>
+
+    <form name="Make QRCode"
+          action="https://chart.googleapis.com/chart"
+          method="get">
+      <div style="display: None">
+        <input name="cht" value="qr" />
+        <input name="chs" id="cht" value="" /input>
+      </div>
+      <div class="param">
+        <label>Image width</label>
+        <input type="text" id="width"  required />
+      </div>
+      <div class="param">
+        <label>Image height</label>
+        <input type="text" id="height" required />
+      </div>
+      <div class="param">
+        <div>
+          <label>Content or URI</label>
+        </div>
+        <div>
+          <textarea name="chl" rows="10">
+          </textarea>
+        </div>
+      </div>
+      <div class="param">
+        <button type="submit">
+          Make my QRCode
+        </button>
+      </div>
+    </form>
+
+  </body>
+</html>
